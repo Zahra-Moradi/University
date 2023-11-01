@@ -1,0 +1,1216 @@
+@prefix : <http://www.semanticweb.org/kandd/group76/final_project#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/kandd/group76/final_project> .
+
+<http://www.semanticweb.org/kandd/group76/final_project> rdf:type owl:Ontology ;
+                                                          owl:imports <http://www.semanticweb.org/kandd/group54/ontology2> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/collections/nl/am/occupation
+<http://purl.org/collections/nl/am/occupation> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group76/final_project#exhibitsArtFrom
+:exhibitsArtFrom rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasArtStyle
+:hasArtStyle rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasAveragePrice
+:hasAveragePrice rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasDirector
+:hasDirector rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isDirectorOf .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#isDirectorOf
+:isDirectorOf rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group76/final_project#acceptsMuseumCard
+:acceptsMuseumCard rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasFee
+:hasFee rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasLat
+:hasLat rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasLong
+:hasLong rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#hasPopularity
+:hasPopularity rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group54/ArtMuseum
+<http://www.semanticweb.org/kandd/group54/ArtMuseum> rdfs:subClassOf :Museum .
+
+
+###  http://www.semanticweb.org/kandd/group54/MuseumDirector
+<http://www.semanticweb.org/kandd/group54/MuseumDirector> owl:equivalentClass :MuseumDirector .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#ArtForm
+:ArtForm rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#ArtStyle
+:ArtStyle rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Artist
+:Artist rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasArtStyle ;
+                                                     owl:someValuesFrom :ArtStyle
+                                                   ]
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasName ;
+                                                     owl:someValuesFrom rdfs:Literal
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] ;
+        rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#AveragePrice
+:AveragePrice rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasFee ;
+                                    owl:someValuesFrom xsd:integer
+                                  ] .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#EarlyModern
+:EarlyModern rdf:type owl:Class ;
+             rdfs:subClassOf :ArtStyle ;
+             rdfs:comment "~18th-19th century" ;
+             rdfs:label "Early Modern" .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Film
+:Film rdf:type owl:Class ;
+      rdfs:subClassOf :ArtForm .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#ModernArt
+:ModernArt rdf:type owl:Class ;
+           rdfs:subClassOf :ArtStyle ;
+           rdfs:comment "~1980-present" ;
+           rdfs:label "Modern Art" .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Museum
+:Museum rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasDirector ;
+                              owl:someValuesFrom :MuseumDirector
+                            ] ;
+        rdfs:subClassOf :Place .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#MuseumDirector
+:MuseumDirector rdf:type owl:Class ;
+                rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Painter
+:Painter rdf:type owl:Class ;
+         rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Painting
+:Painting rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                owl:onProperty :exhibitsArtFrom ;
+                                owl:someValuesFrom :Painter
+                              ] ;
+          rdfs:subClassOf :ArtForm .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Person
+:Person rdf:type owl:Class ;
+        owl:disjointWith :Place .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Photographer
+:Photographer rdf:type owl:Class ;
+              rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Photography
+:Photography rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :exhibitsArtFrom ;
+                                   owl:someValuesFrom :Photographer
+                                 ] ;
+             rdfs:subClassOf :ArtForm .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Place
+:Place rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Renaissance
+:Renaissance rdf:type owl:Class ;
+             rdfs:subClassOf :ArtStyle ;
+             rdfs:comment "~15th-17th century" ;
+             rdfs:label "Renaissance" .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Sculpting
+:Sculpting rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :exhibitsArtFrom ;
+                                 owl:someValuesFrom :Sculptor
+                               ] ;
+           rdfs:subClassOf :ArtForm .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Sculptor
+:Sculptor rdf:type owl:Class ;
+          rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#20thCentury
+<http://www.semanticweb.org/kandd/group76/final_project#20thCentury> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf :ArtStyle ;
+                                                                     rdfs:comment "~20th century" ;
+                                                                     rdfs:label "20th Century" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group54/ontology2EYE
+<http://www.semanticweb.org/kandd/group54/ontology2EYE> rdf:type :Film ;
+                                                        owl:sameAs :EYE .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2Foam
+<http://www.semanticweb.org/kandd/group54/ontology2Foam> owl:sameAs :Foam .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2Rijksmuseum
+<http://www.semanticweb.org/kandd/group54/ontology2Rijksmuseum> owl:sameAs :Rijksmuseum .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Cat%20Cabinet
+<http://www.semanticweb.org/kandd/group54/ontology2#Cat%20Cabinet> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Cat%20Cabinet> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Diamond%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Diamond%20Museum%20Amsterdam> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Diamond%20Museum%20Amsterdam> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Electric%20Ladyland
+<http://www.semanticweb.org/kandd/group54/ontology2#Electric%20Ladyland> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Electric%20Ladyland> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Fashion%20for%20Good%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Fashion%20for%20Good%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Fashion%20for%20Good%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Hermitage%20Amsterdam> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#House%20Marseille
+<http://www.semanticweb.org/kandd/group54/ontology2#House%20Marseille> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#House%20Marseille> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Moco%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Moco%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Moco%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room
+<http://www.semanticweb.org/kandd/group54/ontology2#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Nxt%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Nxt%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Nxt%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Old%20Church
+<http://www.semanticweb.org/kandd/group54/ontology2#Old%20Church> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Old%20Church> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Outsider%20Art%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Outsider%20Art%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Outsider%20Art%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT
+<http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#P//////AKT> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Project%20Space%20On%20The%20Inside
+<http://www.semanticweb.org/kandd/group54/ontology2#Project%20Space%20On%20The%20Inside> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Project%20Space%20On%20The%20Inside> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Rembrandt%20House%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Rembrandt%20House%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Rembrandt%20House%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Stedelijk%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Stedelijk%20Museum%20Amsterdam> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Stedelijk%20Museum%20Amsterdam> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Street%20Art%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Street%20Art%20Museum%20Amsterdam> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Street%20Art%20Museum%20Amsterdam> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#The%20Apple
+<http://www.semanticweb.org/kandd/group54/ontology2#The%20Apple> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#The%20Apple> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#The%20New%20Church%20Amsterdam> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Van%20Eesteren%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Van%20Eesteren%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Van%20Eesteren%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Van%20Gogh%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Van%20Gogh%20Museum> owl:sameAs <http://www.semanticweb.org/kandd/group76/final_project#Van%20Gogh%20Museum> .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Affordable
+:Affordable rdf:type owl:NamedIndividual ,
+                     :AveragePrice ;
+            :hasFee "between 10€ and 15€"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Ben_F._Laposky
+:Ben_F._Laposky rdf:type owl:NamedIndividual ,
+                         :Photographer ;
+                :hasArtStyle <http://www.wikidata.org/entity/Q38166> ;
+                :hasName "Ben F. Laposky"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Cheap
+:Cheap rdf:type owl:NamedIndividual ,
+                :AveragePrice ;
+       :hasFee "less than 10€"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#EYE
+:EYE rdf:type owl:NamedIndividual ,
+              :Museum ;
+     :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Henri%20Plaat> ;
+     :hasAveragePrice :Affordable ;
+     :acceptsMuseumCard "true"^^xsd:boolean ;
+     :hasFee "15.0"^^xsd:float ;
+     :hasLat "52.3844"^^xsd:float ;
+     :hasLong "4.900978"^^xsd:float ;
+     :hasPopularity 7692 ;
+     rdfs:label "EYE"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Expensive
+:Expensive rdf:type owl:NamedIndividual ,
+                    :AveragePrice ;
+           :hasFee "more than 15€"^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Foam
+:Foam rdf:type owl:NamedIndividual ,
+               :Museum ;
+      :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Daniel%20Castro%20Garcia> ,
+                       <http://www.semanticweb.org/kandd/group76/final_project#Daniëlle%20van%20Ark%20> ,
+                       <http://www.semanticweb.org/kandd/group76/final_project#Sofia%20Borges> ,
+                       <http://www.semanticweb.org/kandd/group76/final_project#Viviane%20Sassen> ;
+      :hasAveragePrice :Affordable ;
+      :acceptsMuseumCard "true"^^xsd:boolean ;
+      :hasFee "12.5"^^xsd:float ;
+      :hasLat "52.3639"^^xsd:float ;
+      :hasLong "4.89361"^^xsd:float ;
+      :hasPopularity 210000 ;
+      rdfs:label "Foam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#June_Crespo_Oyaga
+:June_Crespo_Oyaga rdf:type owl:NamedIndividual ,
+                            :Photographer ;
+                   :hasName "June Crespo Oyaga"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Rembrandt
+:Rembrandt rdf:type owl:NamedIndividual ,
+                    :Painter ;
+           :hasArtStyle <http://www.wikidata.org/entity/Q2352880> ;
+           :hasName "Rembrandt"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Rijksmuseum
+:Rijksmuseum rdf:type owl:NamedIndividual ,
+                      :Museum ;
+             :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Antoine%20Denis%20Chaudet> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Berend%20Peter> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Dirck%20Barendsz.> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Emanuel%20de%20Witte> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Franz%20Deutmann> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Gijs%20Bakker> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Jan%20Wijnants> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Jan%20van%20Neck> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Joachim%20von%20Sandrart> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Jules%20Dupré> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Louis%20Apol> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Paulus%20van%20Hillegaert> ,
+                              <http://www.semanticweb.org/kandd/group76/final_project#Rob%20Birza> ;
+             :hasAveragePrice :Expensive ;
+             :acceptsMuseumCard "true"^^xsd:boolean ;
+             :hasFee "20.0"^^xsd:float ;
+             :hasLat "52.36"^^xsd:float ;
+             :hasLong "4.885278"^^xsd:float ;
+             :hasPopularity 675000 ;
+             rdfs:label "Rijksmuseum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Alexej%20von%20Jawlensky
+<http://www.semanticweb.org/kandd/group76/final_project#Alexej%20von%20Jawlensky> rdf:type owl:NamedIndividual ,
+                                                                                           :Painter ;
+                                                                                  :hasArtStyle <http://www.wikidata.org/entity/Q80113> ;
+                                                                                  :hasName "Alexej von Jawlensky"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Antoine%20Denis%20Chaudet
+<http://www.semanticweb.org/kandd/group76/final_project#Antoine%20Denis%20Chaudet> rdf:type owl:NamedIndividual ,
+                                                                                            :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Berend%20Peter
+<http://www.semanticweb.org/kandd/group76/final_project#Berend%20Peter> rdf:type owl:NamedIndividual ,
+                                                                                 :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Bruce%20Nauman
+<http://www.semanticweb.org/kandd/group76/final_project#Bruce%20Nauman> rdf:type owl:NamedIndividual ,
+                                                                                 :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Camille%20Pissarro
+<http://www.semanticweb.org/kandd/group76/final_project#Camille%20Pissarro> rdf:type owl:NamedIndividual ,
+                                                                                     :Painter ;
+                                                                            :hasArtStyle <http://www.wikidata.org/entity/Q150091> ,
+                                                                                         <http://www.wikidata.org/entity/Q40415> ;
+                                                                            :hasName "Camille Pissarro"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Cat%20Cabinet
+<http://www.semanticweb.org/kandd/group76/final_project#Cat%20Cabinet> rdf:type owl:NamedIndividual ,
+                                                                                :Museum ;
+                                                                       :hasAveragePrice :Cheap ;
+                                                                       :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                       :hasFee "6.0"^^xsd:float ;
+                                                                       :hasLat "52.36551"^^xsd:float ;
+                                                                       :hasLong "4.891515"^^xsd:float ;
+                                                                       :hasPopularity 12000 ;
+                                                                       rdfs:label "Cat Cabinet"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Christopher%20Williams
+<http://www.semanticweb.org/kandd/group76/final_project#Christopher%20Williams> rdf:type owl:NamedIndividual ,
+                                                                                         :Photographer ;
+                                                                                :hasName "Christopher Williams"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Claude%20Moliterni
+<http://www.semanticweb.org/kandd/group76/final_project#Claude%20Moliterni> rdf:type owl:NamedIndividual ,
+                                                                                     :Photographer ;
+                                                                            :hasName "Claude Moliterni"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Coba%20Ritsema
+<http://www.semanticweb.org/kandd/group76/final_project#Coba%20Ritsema> rdf:type owl:NamedIndividual ,
+                                                                                 :Painter ;
+                                                                        :hasName "Coba Ritsema"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Damien%20Hirst
+<http://www.semanticweb.org/kandd/group76/final_project#Damien%20Hirst> rdf:type owl:NamedIndividual ,
+                                                                                 :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Daniel%20Castro%20Garcia
+<http://www.semanticweb.org/kandd/group76/final_project#Daniel%20Castro%20Garcia> rdf:type owl:NamedIndividual ,
+                                                                                           :Photographer ;
+                                                                                  :hasName "Daniel Castro Garcia"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Daniëlle%20van%20Ark%20
+<http://www.semanticweb.org/kandd/group76/final_project#Daniëlle%20van%20Ark%20> rdf:type owl:NamedIndividual ,
+                                                                                          :Photographer ;
+                                                                                 :hasName "Daniëlle van Ark "@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#David%20Goldblatt
+<http://www.semanticweb.org/kandd/group76/final_project#David%20Goldblatt> rdf:type owl:NamedIndividual ,
+                                                                                    :Photographer ;
+                                                                           :hasName "David Goldblatt"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#David%20Jablonowski
+<http://www.semanticweb.org/kandd/group76/final_project#David%20Jablonowski> rdf:type owl:NamedIndividual ,
+                                                                                      :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#David%20LaChapelle
+<http://www.semanticweb.org/kandd/group76/final_project#David%20LaChapelle> rdf:type owl:NamedIndividual ,
+                                                                                     :Photographer ;
+                                                                            :hasArtStyle <http://www.wikidata.org/entity/Q134147> ,
+                                                                                         <http://www.wikidata.org/entity/Q186030> ,
+                                                                                         <http://www.wikidata.org/entity/Q749832> ;
+                                                                            :hasName "David LaChapelle"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Dennis%20Rudolph
+<http://www.semanticweb.org/kandd/group76/final_project#Dennis%20Rudolph> rdf:type owl:NamedIndividual ,
+                                                                                   :Painter ;
+                                                                          :hasName "Dennis Rudolph"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Diamond%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group76/final_project#Diamond%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                               :Museum ;
+                                                                                      :hasAveragePrice :Cheap ;
+                                                                                      :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                      :hasFee "10.0"^^xsd:float ;
+                                                                                      :hasLat "52.3594"^^xsd:float ;
+                                                                                      :hasLong "4.8825"^^xsd:float ;
+                                                                                      :hasPopularity 1660 ;
+                                                                                      rdfs:label "Diamond Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Dirck%20Barendsz.
+<http://www.semanticweb.org/kandd/group76/final_project#Dirck%20Barendsz.> rdf:type owl:NamedIndividual ,
+                                                                                    :Painter ;
+                                                                           :hasName "Dirck Barendsz."@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Electric%20Ladyland
+<http://www.semanticweb.org/kandd/group76/final_project#Electric%20Ladyland> rdf:type owl:NamedIndividual ,
+                                                                                      :Museum ;
+                                                                             :hasAveragePrice :Cheap ;
+                                                                             :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                             :hasFee "5.0"^^xsd:float ;
+                                                                             :hasLat "52.375656"^^xsd:float ;
+                                                                             :hasLong "4.880696"^^xsd:float ;
+                                                                             :hasPopularity 368 ;
+                                                                             rdfs:label "Electric Ladyland"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Elspeth%20Diederix
+<http://www.semanticweb.org/kandd/group76/final_project#Elspeth%20Diederix> rdf:type owl:NamedIndividual ,
+                                                                                     :Photographer ;
+                                                                            :hasName "Elspeth Diederix"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Emanuel%20de%20Witte
+<http://www.semanticweb.org/kandd/group76/final_project#Emanuel%20de%20Witte> rdf:type owl:NamedIndividual ,
+                                                                                       :Painter ;
+                                                                              :hasName "Emanuel de Witte"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Fashion%20for%20Good%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Fashion%20for%20Good%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                                :Museum ;
+                                                                                       :hasAveragePrice :Cheap ;
+                                                                                       :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                       :hasFee "10.0"^^xsd:float ;
+                                                                                       :hasLat "52.369373"^^xsd:float ;
+                                                                                       :hasLong "4.8896756"^^xsd:float ;
+                                                                                       :hasPopularity 161 ;
+                                                                                       rdfs:label "Fashion for Good Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Fernand%20Léger
+<http://www.semanticweb.org/kandd/group76/final_project#Fernand%20Léger> rdf:type owl:NamedIndividual ,
+                                                                                  :Painter ;
+                                                                         :hasArtStyle <http://www.wikidata.org/entity/Q42934> ;
+                                                                         :hasName "Fernand Léger"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Franz%20Deutmann
+<http://www.semanticweb.org/kandd/group76/final_project#Franz%20Deutmann> rdf:type owl:NamedIndividual ,
+                                                                                   :Photographer ;
+                                                                          :hasName "Franz Deutmann"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Gijs%20Bakker
+<http://www.semanticweb.org/kandd/group76/final_project#Gijs%20Bakker> rdf:type owl:NamedIndividual ,
+                                                                                :Photographer ;
+                                                                       :hasName "Gijs Bakker"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Govert%20Flinck
+<http://www.semanticweb.org/kandd/group76/final_project#Govert%20Flinck> rdf:type owl:NamedIndividual ,
+                                                                                  :Painter ;
+                                                                         :hasArtStyle <http://www.wikidata.org/entity/Q2352880> ;
+                                                                         :hasName "Govert Flinck"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Hasui%20Kawase
+<http://www.semanticweb.org/kandd/group76/final_project#Hasui%20Kawase> rdf:type owl:NamedIndividual ,
+                                                                                 :Painter ;
+                                                                        :hasArtStyle <http://www.wikidata.org/entity/Q842183> ;
+                                                                        :hasName "Hasui Kawase"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Henri%20Plaat
+<http://www.semanticweb.org/kandd/group76/final_project#Henri%20Plaat> rdf:type owl:NamedIndividual ,
+                                                                                :Photographer ;
+                                                                       :hasName "Henri Plaat"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Hermitage%20Amsterdam
+<http://www.semanticweb.org/kandd/group76/final_project#Hermitage%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                        :Museum ;
+                                                                               :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Govert%20Flinck> ,
+                                                                                                <http://www.semanticweb.org/kandd/group76/final_project#Willem%20Claesz.%20Heda> ,
+                                                                                                <http://www.semanticweb.org/kandd/group76/final_project#Willem%20Kalf%20> ;
+                                                                               :hasAveragePrice :Expensive ;
+                                                                               :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                               :hasFee "27.5"^^xsd:float ;
+                                                                               :hasLat "52.365"^^xsd:float ;
+                                                                               :hasLong "4.9025"^^xsd:float ;
+                                                                               :hasPopularity 380931 ;
+                                                                               rdfs:label "Hermitage Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#House%20Marseille
+<http://www.semanticweb.org/kandd/group76/final_project#House%20Marseille> rdf:type owl:NamedIndividual ,
+                                                                                    :Museum ;
+                                                                           :hasAveragePrice :Cheap ;
+                                                                           :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                           :hasFee "9.0"^^xsd:float ;
+                                                                           :hasLat "52.36764"^^xsd:float ;
+                                                                           :hasLong "4.882855"^^xsd:float ;
+                                                                           :hasPopularity 902 ;
+                                                                           rdfs:label "House Marseille"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Jan%20Pynas
+<http://www.semanticweb.org/kandd/group76/final_project#Jan%20Pynas> rdf:type owl:NamedIndividual ,
+                                                                              :Painter ;
+                                                                     :hasName "Jan Pynas"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Jan%20Wijnants
+<http://www.semanticweb.org/kandd/group76/final_project#Jan%20Wijnants> rdf:type owl:NamedIndividual ,
+                                                                                 :Painter ;
+                                                                        :hasName "Jan Wijnants"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Jan%20van%20Neck
+<http://www.semanticweb.org/kandd/group76/final_project#Jan%20van%20Neck> rdf:type owl:NamedIndividual ,
+                                                                                   :Painter ;
+                                                                          :hasArtStyle <http://www.wikidata.org/entity/Q37853> ;
+                                                                          :hasName "Jan van Neck"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Jean-François%20Raffaëlli
+<http://www.semanticweb.org/kandd/group76/final_project#Jean-François%20Raffaëlli> rdf:type owl:NamedIndividual ,
+                                                                                            :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Joachim%20von%20Sandrart
+<http://www.semanticweb.org/kandd/group76/final_project#Joachim%20von%20Sandrart> rdf:type owl:NamedIndividual ,
+                                                                                           :Painter ;
+                                                                                  :hasName "Joachim von Sandrart"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Jules%20Dupré
+<http://www.semanticweb.org/kandd/group76/final_project#Jules%20Dupré> rdf:type owl:NamedIndividual ,
+                                                                                :Photographer ;
+                                                                       :hasArtStyle <http://www.wikidata.org/entity/Q143357> ;
+                                                                       :hasName "Jules Dupré"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Kawanishi%20Hide%5C
+<http://www.semanticweb.org/kandd/group76/final_project#Kawanishi%20Hide%5C> rdf:type owl:NamedIndividual ,
+                                                                                      :Painter ;
+                                                                             :hasName "Kawanishi Hide\\"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Ko%20Rentmeester
+<http://www.semanticweb.org/kandd/group76/final_project#Ko%20Rentmeester> rdf:type owl:NamedIndividual ,
+                                                                                   :Photographer ;
+                                                                          :hasName "Ko Rentmeester"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Larry%20Bell
+<http://www.semanticweb.org/kandd/group76/final_project#Larry%20Bell> rdf:type owl:NamedIndividual ,
+                                                                               :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Louis%20Apol
+<http://www.semanticweb.org/kandd/group76/final_project#Louis%20Apol> rdf:type owl:NamedIndividual ,
+                                                                               :Photographer ;
+                                                                      :hasName "Louis Apol"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Man%20Ray
+<http://www.semanticweb.org/kandd/group76/final_project#Man%20Ray> rdf:type owl:NamedIndividual ,
+                                                                            :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Meiro%20Koizumi
+<http://www.semanticweb.org/kandd/group76/final_project#Meiro%20Koizumi> rdf:type owl:NamedIndividual ,
+                                                                                  :Painter ;
+                                                                         :hasName "Meiro Koizumi"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Moco%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Moco%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                :Museum ;
+                                                                       :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Damien%20Hirst> ,
+                                                                                        <http://www.semanticweb.org/kandd/group76/final_project#David%20LaChapelle> ,
+                                                                                        <http://www.semanticweb.org/kandd/group76/final_project#Takashi%20Murakami%20> ,
+                                                                                        <http://www.semanticweb.org/kandd/group76/final_project#Yayoi%20Kusama> ;
+                                                                       :hasAveragePrice :Expensive ;
+                                                                       :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                       :hasFee "15.5"^^xsd:float ;
+                                                                       :hasLat "52.358715"^^xsd:float ;
+                                                                       :hasLong "4.881892"^^xsd:float ;
+                                                                       :hasPopularity 253695 ;
+                                                                       rdfs:label "Moco Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room
+<http://www.semanticweb.org/kandd/group76/final_project#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room> rdf:type owl:NamedIndividual ,
+                                                                                                                   :Museum ;
+                                                                                                          :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Hasui%20Kawase> ,
+                                                                                                                           <http://www.semanticweb.org/kandd/group76/final_project#Kawanishi%20Hide%5C> ,
+                                                                                                                           <http://www.semanticweb.org/kandd/group76/final_project#Torii%20Kotondo> ;
+                                                                                                          :hasAveragePrice :Cheap ;
+                                                                                                          :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                                                          :hasFee "0.0"^^xsd:float ;
+                                                                                                          :hasLat "52.364204"^^xsd:float ;
+                                                                                                          :hasLong "4.8867407"^^xsd:float ;
+                                                                                                          :hasPopularity 15 ;
+                                                                                                          rdfs:label "Nihon no hanga – Japanese Print Room"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Nxt%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Nxt%20Museum> rdf:type owl:NamedIndividual ,
+                                                                               :Museum ;
+                                                                      :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Rafael%20Lozano-Hemmer> ;
+                                                                      :hasAveragePrice :Expensive ;
+                                                                      :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                      :hasFee "24.5"^^xsd:float ;
+                                                                      :hasLat "52.39122"^^xsd:float ;
+                                                                      :hasLong "4.9022017"^^xsd:float ;
+                                                                      :hasPopularity 509 ;
+                                                                      rdfs:label "Nxt Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                                                         :Museum ;
+                                                                                                                :hasAveragePrice :Cheap ;
+                                                                                                                :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                                                                :hasFee "0.0"^^xsd:float ;
+                                                                                                                :hasLat "52.314087"^^xsd:float ;
+                                                                                                                :hasLong "4.9500375"^^xsd:float ;
+                                                                                                                :hasPopularity 40 ;
+                                                                                                                rdfs:label "OSCAM - Open Space Contemporary Art Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Odilon%20Redon
+<http://www.semanticweb.org/kandd/group76/final_project#Odilon%20Redon> rdf:type owl:NamedIndividual ,
+                                                                                 :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Old%20Church
+<http://www.semanticweb.org/kandd/group76/final_project#Old%20Church> rdf:type owl:NamedIndividual ,
+                                                                               :Museum ;
+                                                                      :exhibitsArtFrom :Rembrandt ,
+                                                                                       <http://www.semanticweb.org/kandd/group76/final_project#Susan%20Philipsz> ;
+                                                                      :hasAveragePrice :Affordable ;
+                                                                      :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                      :hasFee "12.0"^^xsd:float ;
+                                                                      :hasLat "52.374367"^^xsd:float ;
+                                                                      :hasLong "4.896018"^^xsd:float ;
+                                                                      :hasPopularity 1725 ;
+                                                                      rdfs:label "Old Church"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Outsider%20Art%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Outsider%20Art%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                          :Museum ;
+                                                                                 :hasAveragePrice :Affordable ;
+                                                                                 :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                 :hasFee "14.5"^^xsd:float ;
+                                                                                 :hasLat "52.365772"^^xsd:float ;
+                                                                                 :hasLong "4.9005933"^^xsd:float ;
+                                                                                 :hasPopularity 37 ;
+                                                                                 rdfs:label "Outsider Art Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#P//////AKT
+<http://www.semanticweb.org/kandd/group76/final_project#P//////AKT> rdf:type owl:NamedIndividual ,
+                                                                             :Museum ;
+                                                                    :exhibitsArtFrom :Ben_F._Laposky ,
+                                                                                     :June_Crespo_Oyaga ;
+                                                                    :hasAveragePrice :Cheap ;
+                                                                    :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                    :hasFee "0.0"^^xsd:float ;
+                                                                    :hasLat "52.367073"^^xsd:float ;
+                                                                    :hasLong "4.937687"^^xsd:float ;
+                                                                    :hasPopularity 11 ;
+                                                                    rdfs:label "P//////AKT"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Paul%20Gauguin
+<http://www.semanticweb.org/kandd/group76/final_project#Paul%20Gauguin> rdf:type owl:NamedIndividual ,
+                                                                                 :Painter ;
+                                                                        :hasArtStyle <http://www.wikidata.org/entity/Q164800> ,
+                                                                                     <http://www.wikidata.org/entity/Q166713> ,
+                                                                                     <http://www.wikidata.org/entity/Q382056> ,
+                                                                                     <http://www.wikidata.org/entity/Q40415> ,
+                                                                                     <http://www.wikidata.org/entity/Q847847> ,
+                                                                                     <http://www.wikidata.org/entity/Q848365> ,
+                                                                                     <http://www.wikidata.org/entity/Q889525> ;
+                                                                        :hasName "Paul Gauguin"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Paulus%20van%20Hillegaert
+<http://www.semanticweb.org/kandd/group76/final_project#Paulus%20van%20Hillegaert> rdf:type owl:NamedIndividual ,
+                                                                                            :Painter ;
+                                                                                   :hasName "Paulus van Hillegaert"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Pierre%20Puvis%20de%20Chavannes
+<http://www.semanticweb.org/kandd/group76/final_project#Pierre%20Puvis%20de%20Chavannes> rdf:type owl:NamedIndividual ,
+                                                                                                  :Photographer ;
+                                                                                         :hasArtStyle <http://www.wikidata.org/entity/Q164800> ;
+                                                                                         :hasName "Pierre Puvis de Chavannes"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Pieter%20Lastman
+<http://www.semanticweb.org/kandd/group76/final_project#Pieter%20Lastman> rdf:type owl:NamedIndividual ,
+                                                                                   :Painter ;
+                                                                          :hasName "Pieter Lastman"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Project%20Space%20On%20The%20Inside
+<http://www.semanticweb.org/kandd/group76/final_project#Project%20Space%20On%20The%20Inside> rdf:type owl:NamedIndividual ,
+                                                                                                      :Museum ;
+                                                                                             :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#David%20Jablonowski> ,
+                                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Dennis%20Rudolph> ,
+                                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Meiro%20Koizumi> ;
+                                                                                             :hasAveragePrice :Cheap ;
+                                                                                             :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                                             :hasLat "52.404003"^^xsd:float ;
+                                                                                             :hasLong "4.890881"^^xsd:float ;
+                                                                                             :hasPopularity 4 ;
+                                                                                             rdfs:label "Project Space On The Inside"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Rafael%20Lozano-Hemmer
+<http://www.semanticweb.org/kandd/group76/final_project#Rafael%20Lozano-Hemmer> rdf:type owl:NamedIndividual ,
+                                                                                         :Painter ;
+                                                                                :hasName "Rafael Lozano-Hemmer"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Rembrandt%20House%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Rembrandt%20House%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                             :Museum ;
+                                                                                    :exhibitsArtFrom :Rembrandt ,
+                                                                                                     <http://www.semanticweb.org/kandd/group76/final_project#Jan%20Pynas> ,
+                                                                                                     <http://www.semanticweb.org/kandd/group76/final_project#Pieter%20Lastman> ;
+                                                                                    :hasAveragePrice :Affordable ;
+                                                                                    :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                    :hasFee "15.0"^^xsd:float ;
+                                                                                    :hasLat "52.369446"^^xsd:float ;
+                                                                                    :hasLong "4.901389"^^xsd:float ;
+                                                                                    :hasPopularity 66829 ;
+                                                                                    rdfs:label "Rembrandt House Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#René%20Pierre%20Charles%20Princeteau
+<http://www.semanticweb.org/kandd/group76/final_project#René%20Pierre%20Charles%20Princeteau> rdf:type owl:NamedIndividual ,
+                                                                                                       :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Rob%20Birza
+<http://www.semanticweb.org/kandd/group76/final_project#Rob%20Birza> rdf:type owl:NamedIndividual ,
+                                                                              :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Sofia%20Borges
+<http://www.semanticweb.org/kandd/group76/final_project#Sofia%20Borges> rdf:type owl:NamedIndividual ,
+                                                                                 :Photographer ;
+                                                                        :hasName "Sofia Borges"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Stedelijk%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group76/final_project#Stedelijk%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                                 :Museum ;
+                                                                                        :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Alexej%20von%20Jawlensky> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Bruce%20Nauman> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Christopher%20Williams> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Claude%20Moliterni> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Coba%20Ritsema> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Fernand%20Léger> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Ko%20Rentmeester> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Larry%20Bell> ,
+                                                                                                         <http://www.semanticweb.org/kandd/group76/final_project#Man%20Ray> ;
+                                                                                        :hasAveragePrice :Expensive ;
+                                                                                        :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                        :hasFee "20.0"^^xsd:float ;
+                                                                                        :hasLat "52.3581"^^xsd:float ;
+                                                                                        :hasLong "4.87972"^^xsd:float ;
+                                                                                        :hasPopularity 675000 ;
+                                                                                        rdfs:label "Stedelijk Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Street%20Art%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group76/final_project#Street%20Art%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                                    :Museum ;
+                                                                                           :hasAveragePrice :Expensive ;
+                                                                                           :acceptsMuseumCard "false"^^xsd:boolean ;
+                                                                                           :hasFee "20.0"^^xsd:float ;
+                                                                                           :hasLat "52.375195"^^xsd:float ;
+                                                                                           :hasLong "4.815119"^^xsd:float ;
+                                                                                           :hasPopularity 123 ;
+                                                                                           rdfs:label "Street Art Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Susan%20Philipsz
+<http://www.semanticweb.org/kandd/group76/final_project#Susan%20Philipsz> rdf:type owl:NamedIndividual ,
+                                                                                   :Sculptor .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Takashi%20Murakami%20
+<http://www.semanticweb.org/kandd/group76/final_project#Takashi%20Murakami%20> rdf:type owl:NamedIndividual ,
+                                                                                        :Painter ;
+                                                                               :hasName "Takashi Murakami "@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#The%20Apple
+<http://www.semanticweb.org/kandd/group76/final_project#The%20Apple> rdf:type owl:NamedIndividual ,
+                                                                              :Museum ;
+                                                                     :hasAveragePrice :Cheap ;
+                                                                     :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                     :hasFee "7.0"^^xsd:float ;
+                                                                     :hasLat "52.357376"^^xsd:float ;
+                                                                     :hasLong "4.8381233"^^xsd:float ;
+                                                                     :hasPopularity 39 ;
+                                                                     rdfs:label "The Apple"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#The%20New%20Church%20Amsterdam
+<http://www.semanticweb.org/kandd/group76/final_project#The%20New%20Church%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                                 :Museum ;
+                                                                                        :hasAveragePrice :Expensive ;
+                                                                                        :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                        :hasFee "19.5"^^xsd:float ;
+                                                                                        :hasLat "52.373905"^^xsd:float ;
+                                                                                        :hasLong "4.889621"^^xsd:float ;
+                                                                                        :hasPopularity 2372 ;
+                                                                                        rdfs:label "The New Church Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Theo%20van%20Doesburg
+<http://www.semanticweb.org/kandd/group76/final_project#Theo%20van%20Doesburg> rdf:type owl:NamedIndividual ,
+                                                                                        :Painter ;
+                                                                               :hasArtStyle <http://www.wikidata.org/entity/Q207445> ,
+                                                                                            <http://www.wikidata.org/entity/Q80113> ;
+                                                                               :hasName "Theo van Doesburg"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Torbjørn%20Rødland
+<http://www.semanticweb.org/kandd/group76/final_project#Torbjørn%20Rødland> rdf:type owl:NamedIndividual ,
+                                                                                     :Photographer ;
+                                                                            :hasName "Torbjørn Rødland"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Torii%20Kotondo
+<http://www.semanticweb.org/kandd/group76/final_project#Torii%20Kotondo> rdf:type owl:NamedIndividual ,
+                                                                                  :Painter ;
+                                                                         :hasArtStyle <http://www.wikidata.org/entity/Q842183> ;
+                                                                         :hasName "Torii Kotondo"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Van%20Eesteren%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Van%20Eesteren%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                          :Museum ;
+                                                                                 :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Theo%20van%20Doesburg> ;
+                                                                                 :hasAveragePrice :Affordable ;
+                                                                                 :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                                 :hasFee "12.5"^^xsd:float ;
+                                                                                 :hasLat "52.380043"^^xsd:float ;
+                                                                                 :hasLong "4.827096"^^xsd:float ;
+                                                                                 :hasPopularity 91 ;
+                                                                                 rdfs:label "Van Eesteren Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Van%20Gogh%20Museum
+<http://www.semanticweb.org/kandd/group76/final_project#Van%20Gogh%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                      :Museum ;
+                                                                             :exhibitsArtFrom <http://www.semanticweb.org/kandd/group76/final_project#Camille%20Pissarro> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Jean-François%20Raffaëlli> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Louis%20Apol> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Odilon%20Redon> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Paul%20Gauguin> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Pierre%20Puvis%20de%20Chavannes> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#René%20Pierre%20Charles%20Princeteau> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Vincent%20van%20Gogh> ,
+                                                                                              <http://www.semanticweb.org/kandd/group76/final_project#Émile%20Bernard> ;
+                                                                             :hasAveragePrice :Expensive ;
+                                                                             :acceptsMuseumCard "true"^^xsd:boolean ;
+                                                                             :hasFee "19.0"^^xsd:float ;
+                                                                             :hasLat "52.3583"^^xsd:float ;
+                                                                             :hasLong "4.88111"^^xsd:float ;
+                                                                             :hasPopularity 2300000 ;
+                                                                             rdfs:label "Van Gogh Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Vincent%20van%20Gogh
+<http://www.semanticweb.org/kandd/group76/final_project#Vincent%20van%20Gogh> rdf:type owl:NamedIndividual ,
+                                                                                       :Painter ;
+                                                                              :hasArtStyle <http://www.wikidata.org/entity/Q166713> ,
+                                                                                           <http://www.wikidata.org/entity/Q80113> ;
+                                                                              :hasName "Vincent van Gogh"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Viviane%20Sassen
+<http://www.semanticweb.org/kandd/group76/final_project#Viviane%20Sassen> rdf:type owl:NamedIndividual ,
+                                                                                   :Photographer ;
+                                                                          :hasArtStyle <http://www.wikidata.org/entity/Q186030> ;
+                                                                          :hasName "Viviane Sassen"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Willem%20Claesz.%20Heda
+<http://www.semanticweb.org/kandd/group76/final_project#Willem%20Claesz.%20Heda> rdf:type owl:NamedIndividual ,
+                                                                                          :Painter ;
+                                                                                 :hasName "Willem Claesz. Heda"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Willem%20Kalf%20
+<http://www.semanticweb.org/kandd/group76/final_project#Willem%20Kalf%20> rdf:type owl:NamedIndividual ,
+                                                                                   :Painter ;
+                                                                          :hasName "Willem Kalf "@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Yayoi%20Kusama
+<http://www.semanticweb.org/kandd/group76/final_project#Yayoi%20Kusama> rdf:type owl:NamedIndividual ,
+                                                                                 :Painter ;
+                                                                        :hasArtStyle <http://www.wikidata.org/entity/Q1246516> ,
+                                                                                     <http://www.wikidata.org/entity/Q128115> ,
+                                                                                     <http://www.wikidata.org/entity/Q134147> ;
+                                                                        :hasName "Yayoi Kusama"@en .
+
+
+###  http://www.semanticweb.org/kandd/group76/final_project#Émile%20Bernard
+<http://www.semanticweb.org/kandd/group76/final_project#Émile%20Bernard> rdf:type owl:NamedIndividual ,
+                                                                                  :Photographer ;
+                                                                         :hasArtStyle <http://www.wikidata.org/entity/Q200034> ,
+                                                                                      <http://www.wikidata.org/entity/Q382056> ,
+                                                                                      <http://www.wikidata.org/entity/Q42865> ,
+                                                                                      <http://www.wikidata.org/entity/Q503708> ,
+                                                                                      <http://www.wikidata.org/entity/Q847847> ,
+                                                                                      <http://www.wikidata.org/entity/Q889525> ,
+                                                                                      <http://www.wikidata.org/entity/Q9730> ;
+                                                                         :hasName "Émile Bernard"@en .
+
+
+###  http://www.wikidata.org/entity/Q1246516
+<http://www.wikidata.org/entity/Q1246516> rdf:type owl:NamedIndividual ,
+                                                   <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                          rdfs:label "feminist art" .
+
+
+###  http://www.wikidata.org/entity/Q128115
+<http://www.wikidata.org/entity/Q128115> rdf:type owl:NamedIndividual ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "abstract art" .
+
+
+###  http://www.wikidata.org/entity/Q134147
+<http://www.wikidata.org/entity/Q134147> rdf:type owl:NamedIndividual ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "pop art" .
+
+
+###  http://www.wikidata.org/entity/Q143357
+<http://www.wikidata.org/entity/Q143357> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Barbizon school" .
+
+
+###  http://www.wikidata.org/entity/Q150091
+<http://www.wikidata.org/entity/Q150091> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "neo-impressionism" .
+
+
+###  http://www.wikidata.org/entity/Q164800
+<http://www.wikidata.org/entity/Q164800> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Symbolism" .
+
+
+###  http://www.wikidata.org/entity/Q166713
+<http://www.wikidata.org/entity/Q166713> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Post-Impressionism" .
+
+
+###  http://www.wikidata.org/entity/Q186030
+<http://www.wikidata.org/entity/Q186030> rdf:type owl:NamedIndividual ,
+                                                  :ModernArt ;
+                                         rdfs:label "contemporary art" .
+
+
+###  http://www.wikidata.org/entity/Q200034
+<http://www.wikidata.org/entity/Q200034> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "pointillism" .
+
+
+###  http://www.wikidata.org/entity/Q207445
+<http://www.wikidata.org/entity/Q207445> rdf:type owl:NamedIndividual ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "De Stijl" .
+
+
+###  http://www.wikidata.org/entity/Q2352880
+<http://www.wikidata.org/entity/Q2352880> rdf:type owl:NamedIndividual ,
+                                                   :Renaissance ;
+                                          rdfs:label "Dutch Golden Age painting" .
+
+
+###  http://www.wikidata.org/entity/Q37853
+<http://www.wikidata.org/entity/Q37853> rdf:type owl:NamedIndividual ,
+                                                 :Renaissance ;
+                                        rdfs:label "Baroque" .
+
+
+###  http://www.wikidata.org/entity/Q38166
+<http://www.wikidata.org/entity/Q38166> rdf:type owl:NamedIndividual ,
+                                                 :ModernArt ;
+                                        rdfs:label "modern art" .
+
+
+###  http://www.wikidata.org/entity/Q382056
+<http://www.wikidata.org/entity/Q382056> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Pont-Aven School" .
+
+
+###  http://www.wikidata.org/entity/Q40415
+<http://www.wikidata.org/entity/Q40415> rdf:type owl:NamedIndividual ,
+                                                 :EarlyModern ;
+                                        rdfs:label "Impressionism" .
+
+
+###  http://www.wikidata.org/entity/Q42865
+<http://www.wikidata.org/entity/Q42865> rdf:type owl:NamedIndividual ,
+                                                 :EarlyModern ;
+                                        rdfs:label "Orientalism" .
+
+
+###  http://www.wikidata.org/entity/Q42934
+<http://www.wikidata.org/entity/Q42934> rdf:type owl:NamedIndividual ,
+                                                 <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                        rdfs:label "Cubism" .
+
+
+###  http://www.wikidata.org/entity/Q503708
+<http://www.wikidata.org/entity/Q503708> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Les Nabis" .
+
+
+###  http://www.wikidata.org/entity/Q749832
+<http://www.wikidata.org/entity/Q749832> rdf:type owl:NamedIndividual ,
+                                                  :ModernArt ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "hyperrealism" .
+
+
+###  http://www.wikidata.org/entity/Q80113
+<http://www.wikidata.org/entity/Q80113> rdf:type owl:NamedIndividual ,
+                                                 <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                        rdfs:label "expressionism" .
+
+
+###  http://www.wikidata.org/entity/Q842183
+<http://www.wikidata.org/entity/Q842183> rdf:type owl:NamedIndividual ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "shin-hanga" .
+
+
+###  http://www.wikidata.org/entity/Q847847
+<http://www.wikidata.org/entity/Q847847> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "synthetism" .
+
+
+###  http://www.wikidata.org/entity/Q848365
+<http://www.wikidata.org/entity/Q848365> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ,
+                                                  <http://www.semanticweb.org/kandd/group76/final_project#20thCentury> ;
+                                         rdfs:label "primitivism" .
+
+
+###  http://www.wikidata.org/entity/Q889525
+<http://www.wikidata.org/entity/Q889525> rdf:type owl:NamedIndividual ,
+                                                  :EarlyModern ;
+                                         rdfs:label "Cloisonnism" .
+
+
+###  http://www.wikidata.org/entity/Q9730
+<http://www.wikidata.org/entity/Q9730> rdf:type owl:NamedIndividual ;
+                                       rdfs:label "Western classical music" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

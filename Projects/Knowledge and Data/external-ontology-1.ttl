@@ -1,0 +1,387 @@
+@prefix : <http://www.semanticweb.org/kandd/group54/ontology2> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix path: <http://www.ontotext.com/path#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/kandd/group54/ontology2> .
+
+<http://www.semanticweb.org/kandd/group54/ontology2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/directorOf
+<http://www.semanticweb.org/kandd/group54/ontology2/directorOf> rdf:type owl:ObjectProperty ;
+                                                                owl:inverseOf <http://www.semanticweb.org/kandd/group54/ontology2/isDirectedBy> .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/isDirectedBy
+<http://www.semanticweb.org/kandd/group54/ontology2/isDirectedBy> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group54/ArtMuseum
+<http://www.semanticweb.org/kandd/group54/ArtMuseum> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kandd/group54/MuseumDirector
+<http://www.semanticweb.org/kandd/group54/MuseumDirector> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> ;
+                                                                                owl:someValuesFrom <http://www.semanticweb.org/kandd/group54/ArtMuseum>
+                                                                              ] ;
+                                                          rdfs:subClassOf <http://www.semanticweb.org/kandd/group54/Person> .
+
+
+###  http://www.semanticweb.org/kandd/group54/Person
+<http://www.semanticweb.org/kandd/group54/Person> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/kandd/group54/ontology2EYE
+:EYE rdf:type owl:NamedIndividual ,
+              <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+     rdfs:label "EYE"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2Foam
+:Foam rdf:type owl:NamedIndividual ,
+               <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+      rdfs:label "Foam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2Rijksmuseum
+:Rijksmuseum rdf:type owl:NamedIndividual ,
+                      <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+             rdfs:label "Rijksmuseum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Cat%20Cabinet
+<http://www.semanticweb.org/kandd/group54/ontology2#Cat%20Cabinet> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                   rdfs:label "Cat Cabinet"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Diamond%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Diamond%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                           <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                  rdfs:label "Diamond Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Electric%20Ladyland
+<http://www.semanticweb.org/kandd/group54/ontology2#Electric%20Ladyland> rdf:type owl:NamedIndividual ,
+                                                                                  <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                         rdfs:label "Electric Ladyland"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Fashion%20for%20Good%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Fashion%20for%20Good%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                            <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                   rdfs:label "Fashion for Good Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                    <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                           rdfs:label "Hermitage Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#House%20Marseille
+<http://www.semanticweb.org/kandd/group54/ontology2#House%20Marseille> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                       rdfs:label "House Marseille"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Moco%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Moco%20Museum> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                   rdfs:label "Moco Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room
+<http://www.semanticweb.org/kandd/group54/ontology2#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room> rdf:type owl:NamedIndividual ,
+                                                                                                               <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                                      rdfs:label "Nihon no hanga – Japanese Print Room"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Nxt%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Nxt%20Museum> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                  rdfs:label "Nxt Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                                                     <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                                            rdfs:label "OSCAM - Open Space Contemporary Art Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Old%20Church
+<http://www.semanticweb.org/kandd/group54/ontology2#Old%20Church> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                  rdfs:label "Old Church"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Outsider%20Art%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Outsider%20Art%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                      <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                             rdfs:label "Outsider Art Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT
+<http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                rdfs:label "P//////AKT"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Project%20Space%20On%20The%20Inside
+<http://www.semanticweb.org/kandd/group54/ontology2#Project%20Space%20On%20The%20Inside> rdf:type owl:NamedIndividual ,
+                                                                                                  <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                         rdfs:label "Project Space On The Inside"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Rembrandt%20House%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Rembrandt%20House%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                         <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                rdfs:label "Rembrandt House Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Stedelijk%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Stedelijk%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                             <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                    rdfs:label "Stedelijk Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Street%20Art%20Museum%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#Street%20Art%20Museum%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                                <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                       rdfs:label "Street Art Museum Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#The%20Apple
+<http://www.semanticweb.org/kandd/group54/ontology2#The%20Apple> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                 rdfs:label "The Apple"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam
+<http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam> rdf:type owl:NamedIndividual ,
+                                                                                             <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                                    rdfs:label "The New Church Amsterdam"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Van%20Eesteren%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Van%20Eesteren%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                      <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                             rdfs:label "Van Eesteren Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2#Van%20Gogh%20Museum
+<http://www.semanticweb.org/kandd/group54/ontology2#Van%20Gogh%20Museum> rdf:type owl:NamedIndividual ,
+                                                                                  <http://www.semanticweb.org/kandd/group54/ArtMuseum> ;
+                                                                         rdfs:label "Van Gogh Museum"@en .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/Eva_Olde_Monnikhof
+<http://www.semanticweb.org/kandd/group54/ontology2/Eva_Olde_Monnikhof> rdf:type owl:NamedIndividual ,
+                                                                                 <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                        <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Diamond%20Museum%20Amsterdam> ;
+                                                                        rdfs:label "Eva Olde Monnikhof" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/aliceRoegholt
+<http://www.semanticweb.org/kandd/group54/ontology2/aliceRoegholt> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                   rdfs:label "Alice Roegholt" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/annabelleBirnie
+<http://www.semanticweb.org/kandd/group54/ontology2/annabelleBirnie> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                     <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam> ,
+                                                                                                                                     <http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam> ;
+                                                                     rdfs:label "Annabelle Birnie" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/anoukDeWit
+<http://www.semanticweb.org/kandd/group54/ontology2/anoukDeWit> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Van%20Eesteren%20Museum> ;
+                                                                rdfs:label "Anouk de Wit" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/davidRoos
+<http://www.semanticweb.org/kandd/group54/ontology2/davidRoos> rdf:type owl:NamedIndividual ,
+                                                                        <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                               <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Street%20Art%20Museum%20Amsterdam> ;
+                                                               rdfs:label "David Roos" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/eduardPieterOud
+<http://www.semanticweb.org/kandd/group54/ontology2/eduardPieterOud> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                     <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Moco%20Museum> ;
+                                                                     rdfs:label "Eduard Pieter Oud" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/eliseWessels
+<http://www.semanticweb.org/kandd/group54/ontology2/eliseWessels> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                  <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Nihon%20no%20hanga%20–%20Japanese%20Print%20Room> ;
+                                                                  rdfs:label "Elise Wessels" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/emilieGordenker
+<http://www.semanticweb.org/kandd/group54/ontology2/emilieGordenker> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                     <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Van%20Gogh%20Museum> ;
+                                                                     rdfs:label "Emilie Gordenker" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/hansLooijen
+<http://www.semanticweb.org/kandd/group54/ontology2/hansLooijen> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                 <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Outsider%20Art%20Museum> ;
+                                                                 rdfs:label "Hans Looijen" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/indiraVanTKlooster
+<http://www.semanticweb.org/kandd/group54/ontology2/indiraVanTKlooster> rdf:type owl:NamedIndividual ,
+                                                                                 <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                        rdfs:label "Indira van 't  Klooster" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/jacquelineGrandjean
+<http://www.semanticweb.org/kandd/group54/ontology2/jacquelineGrandjean> rdf:type owl:NamedIndividual ,
+                                                                                  <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                         <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Old%20Church> ;
+                                                                         rdfs:label "Jacqueline Grandjean" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/janeaJohnson
+<http://www.semanticweb.org/kandd/group54/ontology2/janeaJohnson> rdf:type owl:NamedIndividual ,
+                                                                           <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                  <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> :Foam ;
+                                                                  rdfs:label "Jane'a Johnson" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/joseeRoel
+<http://www.semanticweb.org/kandd/group54/ontology2/joseeRoel> rdf:type owl:NamedIndividual ,
+                                                                        <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                               rdfs:label "Josee Roël" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/katrinaLey
+<http://www.semanticweb.org/kandd/group54/ontology2/katrinaLey> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Fashion%20for%20Good%20Museum> ;
+                                                                rdfs:label "Katrin Ley" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/lidewijDeKoekkoek
+<http://www.semanticweb.org/kandd/group54/ontology2/lidewijDeKoekkoek> rdf:type owl:NamedIndividual ,
+                                                                                <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                       <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Rembrandt%20House%20Museum> ;
+                                                                       rdfs:label "Lidewij de Koekkoek" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/marianDuff
+<http://www.semanticweb.org/kandd/group54/ontology2/marianDuff> rdf:type owl:NamedIndividual ,
+                                                                         <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#OSCAM%20-%20Open%20Space%20Contemporary%20Art%20Museum> ;
+                                                                rdfs:label "Marian Duff" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/merelVanHelsdingen
+<http://www.semanticweb.org/kandd/group54/ontology2/merelVanHelsdingen> rdf:type owl:NamedIndividual ,
+                                                                                 <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                        <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Nxt%20Museum> ;
+                                                                        rdfs:label "Merel van Helsdingen" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/nandaVanDenBerg
+<http://www.semanticweb.org/kandd/group54/ontology2/nandaVanDenBerg> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                     <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam> ;
+                                                                     rdfs:label "Nanda van den Berg" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/nick_padalino
+<http://www.semanticweb.org/kandd/group54/ontology2/nick_padalino> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                   <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Electric%20Ladyland> ;
+                                                                   rdfs:label "Nick Padalino" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/nielsVanTomme
+<http://www.semanticweb.org/kandd/group54/ontology2/nielsVanTomme> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                   <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#The%20Apple> ;
+                                                                   rdfs:label "Niels van Tomme" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/nienkeVijlbrief
+<http://www.semanticweb.org/kandd/group54/ontology2/nienkeVijlbrief> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                     <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT> ;
+                                                                     rdfs:label "Nienke Vijllbrief" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/reinWolfs
+<http://www.semanticweb.org/kandd/group54/ontology2/reinWolfs> rdf:type owl:NamedIndividual ,
+                                                                        <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                               <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#Stedelijk%20Museum%20Amsterdam> ;
+                                                               rdfs:label "Rein Wolfs" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/robVanDeWerdt
+<http://www.semanticweb.org/kandd/group54/ontology2/robVanDeWerdt> rdf:type owl:NamedIndividual ,
+                                                                            <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                   <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> <http://www.semanticweb.org/kandd/group54/ontology2#P//////AKT> ;
+                                                                   rdfs:label "Rob van de Werdt" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/sandraDenHamer
+<http://www.semanticweb.org/kandd/group54/ontology2/sandraDenHamer> rdf:type owl:NamedIndividual ,
+                                                                             <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                    <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> :EYE ;
+                                                                    rdfs:label "Sandra den Hamer" .
+
+
+###  http://www.semanticweb.org/kandd/group54/ontology2/tacoDibbits
+<http://www.semanticweb.org/kandd/group54/ontology2/tacoDibbits> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.semanticweb.org/kandd/group54/MuseumDirector> ;
+                                                                 <http://www.semanticweb.org/kandd/group54/ontology2/directorOf> :Rijksmuseum ;
+                                                                 rdfs:label "Taco Dibbits" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/kandd/group54/ontology2#Hermitage%20Amsterdam>
+                        <http://www.semanticweb.org/kandd/group54/ontology2#The%20New%20Church%20Amsterdam>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/kandd/group54/ontology2/nienkeVijlbrief>
+                        <http://www.semanticweb.org/kandd/group54/ontology2/robVanDeWerdt>
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
